@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\qrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get("/qr_code/{qr}",[qrCodeController::class,"qrCodeGenerator"])->name('qr.generator');
+
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
